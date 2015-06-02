@@ -1,27 +1,35 @@
-package me.leckie.demo;
+package me.leckie.demo.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import me.leckie.demo.R;
 
+/**
+ * ListView to show demo items
+ */
 public class ListViewActivity extends Activity {
 
     private ListView listView;
 
     private void init() {
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"item1", "item2", "item2", "item4"});
+        // items
+        String[] items = {"item1", "item2", "item2", "settings"};
+        // Demo class
+        final Class[] targets = {MainActivity.class, MainActivity.class, MainActivity.class, SettingsActivity.class};
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);
         listView = (ListView) findViewById(R.id.list_item);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListViewActivity.this, id + " " + listView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-
+                startActivity(new Intent(ListViewActivity.this, targets[position]));
             }
         });
     }
