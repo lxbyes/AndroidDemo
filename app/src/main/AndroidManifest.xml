@@ -41,6 +41,10 @@
             android:name=".activity.ImageViewActivity"
             android:label="@string/title_activity_image_view" >
         </activity>
+        <activity
+            android:name=".activity.FragmentActivity"
+            android:label="@string/title_activity_fragment" >
+        </activity>
     </application>
 
 </manifest>

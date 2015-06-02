@@ -19,9 +19,9 @@ public class ListViewActivity extends Activity {
 
     private void init() {
         // items
-        String[] items = {"Back", "GridViewActivity", "ListViewLoader", "Settings"};
+        String[] items = {"Back", "GridViewActivity", "ListViewLoader", "Settings", "Fragment"};
         // Demo class
-        final Class[] targets = {MainActivity.class, GridViewActivity.class, ListViewLoader.class, SettingsActivity.class};
+        final Class[] targets = {MainActivity.class, GridViewActivity.class, ListViewLoader.class, SettingsActivity.class, FragmentActivity.class};
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);
         listView = (ListView) findViewById(R.id.list_item);
