@@ -34,7 +34,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return mThumbIds[position];
     }
 
     @Override

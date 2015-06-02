@@ -1,6 +1,8 @@
 package me.leckie.demo.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,7 +29,9 @@ public class GridViewActivity extends Activity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(GridViewActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(GridViewActivity.this, ImageViewActivity.class);
+                intent.putExtra("imageId", (int) parent.getItemIdAtPosition(position));
+                startActivity(intent);
             }
         });
     }
