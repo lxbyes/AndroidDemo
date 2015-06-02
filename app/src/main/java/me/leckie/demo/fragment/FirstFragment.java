@@ -38,7 +38,7 @@ public class FirstFragment extends Fragment {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getFragmentManager().beginTransaction().replace(R.id.fragment, new SecondFragment());
+                getActivity().getFragmentManager().beginTransaction().replace(R.id.fragment, new SecondFragment()).commit();
             }
         });
 

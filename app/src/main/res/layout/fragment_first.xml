@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     tools:context="me.leckie.demo.fragment.FirstFragment">
 
-    <TextView
-        android:id="@+id/first_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/material_blue_grey_800"
-        android:text="@string/hello_first_fragment" />
-
     <Button
         android:id="@+id/btn_go_fragment"
         android:layout_width="wrap_content"
