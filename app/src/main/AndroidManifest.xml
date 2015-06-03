@@ -53,6 +53,10 @@
             android:name=".activity.DrawBallActivity"
             android:label="@string/title_activity_draw_ball" >
         </activity>
+        <activity
+            android:name=".activity.MovementActivity"
+            android:label="@string/title_activity_movement" >
+        </activity>
     </application>
 
 </manifest>

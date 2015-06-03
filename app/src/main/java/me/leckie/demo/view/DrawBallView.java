@@ -16,7 +16,7 @@ public class DrawBallView extends View {
 
     private float y = 0.0f;
 
-    private float radius = 100.0f;
+    private float radius = 75.0f;
 
     private Paint paint = new Paint();
 
