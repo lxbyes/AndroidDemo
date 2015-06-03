@@ -13,4 +13,5 @@
     <string name="hello_second_fragment">Hello second fragment</string>
     <string name="title_activity_fragment">FragmentActivity</string>
     <string name="title_activity_lifecycle">LifecycleActivity</string>
+    <string name="title_activity_draw_ball">DrawBallActivity</string>
 </resources>

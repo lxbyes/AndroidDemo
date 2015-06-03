@@ -49,6 +49,10 @@
             android:name=".activity.LifecycleActivity"
             android:label="@string/title_activity_lifecycle" >
         </activity>
+        <activity
+            android:name=".activity.DrawBallActivity"
+            android:label="@string/title_activity_draw_ball" >
+        </activity>
     </application>
 
 </manifest>
