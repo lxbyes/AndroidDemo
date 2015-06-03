@@ -5,8 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -56,6 +54,12 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         invalidate();
     }
 
+    public void doDraw() {
+        Canvas c = getHolder().lockCanvas();
+        draw(c);
+        getHolder().unlockCanvasAndPost(c);
+    }
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         Rect surfaceFrame = holder.getSurfaceFrame();
@@ -67,9 +71,9 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         xPos = width / 2;
         yPos = circleRadius;
 
-        movementUpdateThread = new MovementUpdateThread(this);
+       /* movementUpdateThread = new MovementUpdateThread(this);
         movementUpdateThread.setRunning(true);
-        movementUpdateThread.start();
+        movementUpdateThread.start();*/
     }
 
     @Override
