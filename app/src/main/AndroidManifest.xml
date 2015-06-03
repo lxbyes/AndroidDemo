@@ -45,6 +45,10 @@
             android:name=".activity.FragmentActivity"
             android:label="@string/title_activity_fragment" >
         </activity>
+        <activity
+            android:name=".activity.LifecycleActivity"
+            android:label="@string/title_activity_lifecycle" >
+        </activity>
     </application>
 
 </manifest>
