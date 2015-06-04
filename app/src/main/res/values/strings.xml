@@ -15,4 +15,5 @@
     <string name="title_activity_lifecycle">LifecycleActivity</string>
     <string name="title_activity_draw_ball">DrawBallActivity</string>
     <string name="title_activity_movement">MovementActivity</string>
+    <string name="title_activity_surface">SurfaceActivity</string>
 </resources>

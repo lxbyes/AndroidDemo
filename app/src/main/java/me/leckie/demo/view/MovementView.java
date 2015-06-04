@@ -30,10 +30,13 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
 
     private MovementUpdateThread movementUpdateThread;
 
+    private SurfaceHolder holder;
+
     public MovementView(Context context) {
         super(context);
 
-        getHolder().addCallback(this);
+        holder = getHolder();
+        holder.addCallback(this);
 
         circleRadius = 75;
         circlePaint = new Paint();
@@ -42,22 +45,7 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         xVel = 2;
         yVel = 2;
 
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        canvas.drawColor(Color.WHITE);
-        canvas.drawCircle(xPos, yPos, circleRadius, circlePaint);
-
-        invalidate();
-    }
-
-    public void doDraw() {
-        Canvas c = getHolder().lockCanvas();
-        draw(c);
-        getHolder().unlockCanvasAndPost(c);
+        movementUpdateThread = new MovementUpdateThread(this);
     }
 
     @Override
@@ -71,9 +59,8 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         xPos = width / 2;
         yPos = circleRadius;
 
-       /* movementUpdateThread = new MovementUpdateThread(this);
         movementUpdateThread.setRunning(true);
-        movementUpdateThread.start();*/
+        movementUpdateThread.start();
     }
 
     @Override
@@ -83,15 +70,16 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-
+        boolean syn = true;
+        int count = 0;
         movementUpdateThread.setRunning(false);
-        while (retry) {
+        while (syn) {
+            Log.e(TAG, "" + (++count));
             try {
                 movementUpdateThread.join();
-                retry = false;
+                syn = false;
             } catch (InterruptedException e) {
-
+                e.printStackTrace();
             }
         }
     }
@@ -136,6 +124,19 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
 
             // 重新设置x轴坐标
             xVel *= -1;
+        }
+
+        Canvas c = null;
+        try {
+            c = holder.lockCanvas();
+            c.drawColor(Color.WHITE);
+            c.drawCircle(xPos, yPos, circleRadius, circlePaint);
+            c.drawText("x:" + xPos + ",y:" + yPos, 0, 0, circlePaint);
+        } catch (Exception e) {
+        } finally {
+            if (c != null) {
+                holder.unlockCanvasAndPost(c);
+            }
         }
     }
 }
