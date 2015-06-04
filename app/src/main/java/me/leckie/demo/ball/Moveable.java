@@ -42,9 +42,9 @@ public class Moveable {
     public Moveable(int x, int y, int r, Paint paint) {
         super();
         this.x = x;
+        this.y = y;
         this.startX = x;
         this.startY = y;
-        this.y = y;
         this.r = r;
         this.paint = paint;
         timeX = System.nanoTime();

@@ -6,7 +6,7 @@ package me.leckie.demo.ball;
 public class BallThread extends Thread {
     private Moveable moveable;// 小球对象
     private boolean flag = false;// 线程标识
-    private int sleepSpan = 30;// 休眠时间
+    private int sleepSpan = 10;// 休眠时间
     private float g = 200;// 重力加速度
     private double currentTime;// 记录当前事件
 

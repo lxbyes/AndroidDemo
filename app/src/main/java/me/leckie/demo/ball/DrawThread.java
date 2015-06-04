@@ -10,7 +10,7 @@ public class DrawThread extends Thread {
     BallView ballView;// 自定义View
     SurfaceHolder surfaceHolder;
     boolean flag = false;// 线程标识
-    int sleepSpan = 30;// 线程休眠
+    int sleepSpan = 10;// 线程休眠
     long start = System.nanoTime();// 其实时间，用于计算帧速率
     int count = 0;// 计算帧率
 

@@ -82,21 +82,18 @@ public class BallView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        if (!drawThread.isAlive())
+        if (!drawThread.isAlive()) {
             drawThread.start();
+        }
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                               int height) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        drawThread.flag = false;
-        drawThread = null;
-
     }
 
 }
