@@ -61,6 +61,10 @@
             android:name=".activity.SurfaceActivity"
             android:label="@string/title_activity_surface" >
         </activity>
+        <activity
+            android:name=".activity.MoveableActivity"
+            android:label="@string/title_activity_moveable" >
+        </activity>
     </application>
 
 </manifest>
