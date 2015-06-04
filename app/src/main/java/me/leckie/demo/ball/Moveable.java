@@ -1,7 +1,7 @@
 package me.leckie.demo.ball;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 /**
  * Created by leckie on 6/4/15.
@@ -23,7 +23,7 @@ public class Moveable {
     double timeX;// 水平运动时间
     double timeY;// 竖直运动时间
 
-    Bitmap bitmap = null;// 小球
+    Paint paint = null;
 
     BallThread bt = null;
 
@@ -37,16 +37,16 @@ public class Moveable {
      * @param x
      * @param y
      * @param r
-     * @param bitmap
+     * @param paint
      */
-    public Moveable(int x, int y, int r, Bitmap bitmap) {
+    public Moveable(int x, int y, int r, Paint paint) {
         super();
         this.x = x;
         this.startX = x;
         this.startY = y;
         this.y = y;
         this.r = r;
-        this.bitmap = bitmap;
+        this.paint = paint;
         timeX = System.nanoTime();
         this.v_x = BallView.V_MIN
                 + (int) ((BallView.V_MAX - BallView.V_MIN) * Math.random());// 初始水平速度
@@ -58,6 +58,6 @@ public class Moveable {
      * 绘画
      */
     public void drawSelf(Canvas canvas) {
-        canvas.drawBitmap(bitmap, x, y, null);
+        canvas.drawCircle(x, y, r, paint);
     }
 }
