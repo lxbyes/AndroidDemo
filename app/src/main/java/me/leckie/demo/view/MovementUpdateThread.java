@@ -20,11 +20,11 @@ public class MovementUpdateThread extends Thread {
     public void run() {
         while (running) {
             movementView.updatePhysics();
-            try {
-                sleep(10);
+            /*try {
+                sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 }

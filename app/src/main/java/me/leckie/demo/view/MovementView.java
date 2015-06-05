@@ -6,8 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.Random;
 
 /**
  * Created by leckie on 6/3/15.
@@ -16,16 +19,19 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
 
     private static final String TAG = "MovementView";
 
-    private int xPos = 0;
-    private int yPos = 0;
+    private float fx = Float.MAX_VALUE;
+    private float fy = Float.MAX_VALUE;
 
-    private int xVel = 0;
-    private int yVel = 0;
+    private float xPos = 0f;
+    private float yPos = 0f;
 
-    private int width;
-    private int height;
+    private int xVel = 1;
+    private int yVel = 1;
 
-    private int circleRadius;
+    private float width;
+    private float height;
+
+    private float circleRadius;
     private Paint circlePaint;
 
     private MovementUpdateThread movementUpdateThread;
@@ -42,8 +48,8 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         circlePaint = new Paint();
         circlePaint.setColor(Color.BLUE);
 
-        xVel = 2;
-        yVel = 2;
+        xVel = 1;
+        yVel = 1;
 
         movementUpdateThread = new MovementUpdateThread(this);
     }
@@ -84,10 +90,32 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                this.fx = event.getX();
+                this.fy = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                this.fx = Float.MAX_VALUE;
+                this.fy = Float.MAX_VALUE;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                this.fx = event.getX();
+                this.fy = event.getY();
+                break;
+        }
+
+        return true;
+    }
+
     public void updatePhysics() {
+        Random random = new Random();
         //更新当前的x,y坐标
-        xPos += xVel;
-        yPos += yVel;
+        xPos += (random.nextInt(30) + 12) * xVel;
+        yPos += (random.nextInt(40) + 16) * yVel;
 
         if (yPos - circleRadius < 0 || yPos + circleRadius > height) {
 
@@ -105,7 +133,7 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
             }
 
             // 将Y坐标设置为相反方向
-            yVel *= -1;
+            yVel = -yVel;
         }
         if (xPos - circleRadius < 0 || xPos + circleRadius > width) {
 
@@ -123,7 +151,7 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
             }
 
             // 重新设置x轴坐标
-            xVel *= -1;
+            xVel = -xVel;
         }
 
         Canvas c = null;
@@ -131,7 +159,12 @@ public class MovementView extends SurfaceView implements SurfaceHolder.Callback 
             c = holder.lockCanvas();
             c.drawColor(Color.WHITE);
             c.drawCircle(xPos, yPos, circleRadius, circlePaint);
-            c.drawText("x:" + xPos + ",y:" + yPos, 0, 0, circlePaint);
+            circlePaint.setTextSize(40);
+            c.drawText(" x:" + xPos + ",  y:" + yPos, 30, 30, circlePaint);
+            c.drawText("fx:" + fx + ", fy:" + fy, 30, 80, circlePaint);
+            c.drawLine(0f, 120f, 1000.0f - Math.abs(fx - xPos), 120f, circlePaint);
+            c.drawLine(0f, 150f, 1000.0f - Math.abs(fy - yPos), 150f, circlePaint);
+            c.drawLine(0f, 180f, 1000.0f - (float) Math.sqrt((fx - fy) * (fx - fy) + (xPos - yPos) * (xPos - yPos)), 180f, circlePaint);
         } catch (Exception e) {
         } finally {
             if (c != null) {
