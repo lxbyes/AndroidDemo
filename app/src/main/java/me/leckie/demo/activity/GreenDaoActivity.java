@@ -36,6 +36,12 @@ public class GreenDaoActivity extends Activity {
         query();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        deleteAll();
+    }
+
     public void init() {
         mTextView = (TextView) findViewById(R.id.tv);
 
@@ -65,6 +71,10 @@ public class GreenDaoActivity extends Activity {
             sb.append(note.getDate() + ",");
         }
         mTextView.setText(sb);
+    }
+
+    public void deleteAll() {
+        noteDao.deleteAll();
     }
 
 }
