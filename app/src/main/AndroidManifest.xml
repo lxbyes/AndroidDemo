@@ -12,16 +12,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.ListViewActivity"
+            android:label="@string/title_activity_list_view" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.ListViewActivity"
-            android:label="@string/title_activity_list_view" />
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -35,35 +35,31 @@
         </activity>
         <activity
             android:name=".activity.GridViewActivity"
-            android:label="@string/title_activity_grid_view" >
-        </activity>
+            android:label="@string/title_activity_grid_view" />
         <activity
             android:name=".activity.ImageViewActivity"
-            android:label="@string/title_activity_image_view" >
-        </activity>
+            android:label="@string/title_activity_image_view" />
         <activity
             android:name=".activity.FragmentActivity"
-            android:label="@string/title_activity_fragment" >
-        </activity>
+            android:label="@string/title_activity_fragment" />
         <activity
             android:name=".activity.LifecycleActivity"
-            android:label="@string/title_activity_lifecycle" >
-        </activity>
+            android:label="@string/title_activity_lifecycle" />
         <activity
             android:name=".activity.DrawBallActivity"
-            android:label="@string/title_activity_draw_ball" >
-        </activity>
+            android:label="@string/title_activity_draw_ball" />
         <activity
             android:name=".activity.MovementActivity"
-            android:label="@string/title_activity_movement" >
-        </activity>
+            android:label="@string/title_activity_movement" />
         <activity
             android:name=".activity.SurfaceActivity"
-            android:label="@string/title_activity_surface" >
-        </activity>
+            android:label="@string/title_activity_surface" />
         <activity
             android:name=".activity.MoveableActivity"
-            android:label="@string/title_activity_moveable" >
+            android:label="@string/title_activity_moveable" />
+        <activity
+            android:name=".activity.GreenDaoActivity"
+            android:label="@string/title_activity_green_dao" >
         </activity>
     </application>
 

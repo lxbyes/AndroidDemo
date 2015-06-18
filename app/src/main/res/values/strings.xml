@@ -17,4 +17,5 @@
     <string name="title_activity_movement">MovementActivity</string>
     <string name="title_activity_surface">SurfaceActivity</string>
     <string name="title_activity_moveable">MoveableActivity</string>
+    <string name="title_activity_green_dao">GreenDaoActivity</string>
 </resources>
