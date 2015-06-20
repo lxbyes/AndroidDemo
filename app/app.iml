@@ -91,7 +91,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
+>>>>>>> a71b4c1551c75e61734c88fd33217fdfdb6d5eff
     <orderEntry type="library" exported="" name="greendao-1.3.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="easemobchat_2.2.0" level="project" />
   </component>
 </module>
