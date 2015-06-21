@@ -1,5 +1,6 @@
 package me.leckie.demo.view;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -136,5 +137,11 @@ public class SlidingMenu extends HorizontalScrollView {
         } else {
             showMenu();
         }
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        ObjectAnimator.ofFloat(mMenu, TRANSLATION_X, l).setDuration(0).start();
     }
 }
