@@ -1,6 +1,7 @@
 package me.leckie.demo.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+
+import me.leckie.demo.R;
 
 /**
  * Created by leckie on 6/21/15.
@@ -29,15 +32,48 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private boolean once = false;
 
+    public SlidingMenu(Context context) {
+        this(context, null);
+    }
+
+    /**
+     * 未使用自定义属性时调用
+     *
+     * @param context
+     * @param attrs
+     */
     public SlidingMenu(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+    /**
+     * 使用自定义属性时调用
+     *
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
+    public SlidingMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        // 获取自定义属性
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SlidingMenu, defStyleAttr, 0);
+        int n = a.getIndexCount();
+        for (int i = 0; i < n; i++) {
+            int attr = a.getIndex(i);
+            switch (attr) {
+                case R.styleable.SlidingMenu_rightPadding:
+                    // trans dp to px
+                    mMenuRightPadding = a.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics()));
+                    break;
+            }
+        }
+        a.recycle();
+
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth = outMetrics.widthPixels;
-
-        // trans dp to px
-        mMenuRightPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics());
     }
 
     @Override
