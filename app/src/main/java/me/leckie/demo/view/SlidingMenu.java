@@ -32,6 +32,8 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private boolean once = false;
 
+    private boolean isMenuShown = false;
+
     public SlidingMenu(Context context) {
         this(context, null);
     }
@@ -115,10 +117,24 @@ public class SlidingMenu extends HorizontalScrollView {
     }
 
     public void showMenu() {
-        this.smoothScrollTo(mMenuWidth, 0);
+        if (!isMenuShown) {
+            this.smoothScrollTo(mMenuWidth, 0);
+            isMenuShown = true;
+        }
     }
 
     public void hideMenu() {
-        this.smoothScrollTo(0, 0);
+        if (isMenuShown) {
+            this.smoothScrollTo(0, 0);
+            isMenuShown = false;
+        }
+    }
+
+    public void toggleMenu() {
+        if (isMenuShown) {
+            hideMenu();
+        } else {
+            showMenu();
+        }
     }
 }
