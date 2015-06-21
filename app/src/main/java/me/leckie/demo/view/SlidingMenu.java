@@ -144,8 +144,16 @@ public class SlidingMenu extends HorizontalScrollView {
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
-        float rightScale = 0.7f + 0.3f * l / mMenuWidth;
-        ViewHelper.setTranslationX(mMenu, l);
+        float scale = 1.0f * l / mMenuWidth;
+        float rightScale = 0.7f + 0.3f * scale;
+        float leftScale = 1.0f - scale * 0.3f;
+        float leftAlpha = 0.6f + 0.4f * (1.0f - scale);
+
+        ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.8f);
+        ViewHelper.setScaleX(mMenu, leftScale);
+        ViewHelper.setScaleY(mMenu, leftScale);
+        ViewHelper.setAlpha(mMenu, leftAlpha);
+
         ViewHelper.setPivotX(mContent, 0);
         ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
         ViewHelper.setScaleX(mContent, rightScale);
