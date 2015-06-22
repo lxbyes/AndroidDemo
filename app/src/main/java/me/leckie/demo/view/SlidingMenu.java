@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
@@ -79,6 +80,9 @@ public class SlidingMenu extends HorizontalScrollView {
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth = outMetrics.widthPixels;
+
+        // no fade
+        this.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     @Override
@@ -108,10 +112,12 @@ public class SlidingMenu extends HorizontalScrollView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
-                if (scrollX > mMenuWidth / 2) {
-                    showMenu();
+                if (scrollX < mMenuWidth / 2) {
+                    this.smoothScrollTo(0, 0);
+                    isMenuShown = true;
                 } else {
-                    hideMenu();
+                    this.smoothScrollTo(mMenuWidth, 0);
+                    isMenuShown = false;
                 }
                 return true;
         }
@@ -121,14 +127,14 @@ public class SlidingMenu extends HorizontalScrollView {
 
     public void showMenu() {
         if (!isMenuShown) {
-            this.smoothScrollTo(mMenuWidth, 0);
+            this.smoothScrollTo(0, 0);
             isMenuShown = true;
         }
     }
 
     public void hideMenu() {
         if (isMenuShown) {
-            this.smoothScrollTo(0, 0);
+            this.smoothScrollTo(mMenuWidth, 0);
             isMenuShown = false;
         }
     }
