@@ -110,7 +110,7 @@ public class SlidingMenu extends HorizontalScrollView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
-                if (scrollX > mMenuWidth / 2) {
+                if (scrollX < mMenuWidth / 2) {
                     showMenu();
                 } else {
                     hideMenu();
@@ -123,14 +123,14 @@ public class SlidingMenu extends HorizontalScrollView {
 
     public void showMenu() {
         if (!isMenuShown) {
-            this.smoothScrollTo(mMenuWidth, 0);
+            this.smoothScrollTo(0, 0);
             isMenuShown = true;
         }
     }
 
     public void hideMenu() {
         if (isMenuShown) {
-            this.smoothScrollTo(0, 0);
+            this.smoothScrollTo(mMenuWidth, 0);
             isMenuShown = false;
         }
     }
