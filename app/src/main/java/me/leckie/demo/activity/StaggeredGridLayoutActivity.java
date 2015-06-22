@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.leckie.demo.R;
+import me.leckie.demo.adapter.SimpleAdapter;
 import me.leckie.demo.adapter.StaggeredAdapter;
 
 public class StaggeredGridLayoutActivity extends AppCompatActivity {
@@ -33,6 +36,18 @@ public class StaggeredGridLayoutActivity extends AppCompatActivity {
         initViews();
 
         mAdapter = new StaggeredAdapter(this, mDatas);
+        mAdapter.setOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                Toast.makeText(StaggeredGridLayoutActivity.this, "onItemClick:" + pos, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int pos) {
+                mAdapter.deleteData(pos);
+            }
+        });
+
         mRecyclerView.setAdapter(mAdapter);
 
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);

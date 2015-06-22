@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,18 @@ public class RecyclerViewActivity extends AppCompatActivity {
         initViews();
 
         mAdapter = new SimpleAdapter(this, mDatas);
+        mAdapter.setOnItemClickListener(new SimpleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                Toast.makeText(RecyclerViewActivity.this, "onItemClick:" + pos, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int pos) {
+                Toast.makeText(RecyclerViewActivity.this, "onItemLongClick:" + pos, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mRecyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

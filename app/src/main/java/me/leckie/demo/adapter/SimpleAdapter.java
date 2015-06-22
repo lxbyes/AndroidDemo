@@ -19,7 +19,19 @@ public class SimpleAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private LayoutInflater mInflater;
     private Context mContext;
-    private List<String> mDatas;
+    protected List<String> mDatas;
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int pos);
+
+        public void onItemLongClick(View view, int pos);
+    }
+
+    protected OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     public SimpleAdapter(Context context, List<String> datas) {
         mContext = context;
@@ -35,8 +47,30 @@ public class SimpleAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int pos) {
+    public void onBindViewHolder(final MyViewHolder holder, final int pos) {
         holder.tv.setText(mDatas.get(pos));
+        setUpItemEvent(holder);
+    }
+
+    protected void setUpItemEvent(final MyViewHolder holder) {
+        if (onItemClickListener != null) {
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int layoutPos = holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView, layoutPos);
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemClickListener.onItemLongClick(holder.itemView, holder.getLayoutPosition());
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
