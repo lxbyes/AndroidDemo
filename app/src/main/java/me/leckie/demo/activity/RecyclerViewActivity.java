@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.leckie.demo.R;
+import me.leckie.demo.adapter.DividerItemDecoration;
 import me.leckie.demo.adapter.SimpleAdapter;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
     }
 
     public void initDatas() {
