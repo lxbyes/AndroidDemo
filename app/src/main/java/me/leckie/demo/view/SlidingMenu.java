@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
@@ -77,6 +78,9 @@ public class SlidingMenu extends HorizontalScrollView {
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth = outMetrics.widthPixels;
+
+        // no fade
+        this.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     @Override
