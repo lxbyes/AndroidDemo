@@ -1,9 +1,7 @@
 package me.leckie.demo.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,16 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.leckie.demo.R;
-import me.leckie.demo.adapter.DividerItemDecoration;
-import me.leckie.demo.adapter.SimpleAdapter;
+import me.leckie.demo.adapter.StaggeredAdapter;
 
-public class RecyclerViewActivity extends AppCompatActivity {
+public class StaggeredGridLayoutActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
     private List<String> mDatas;
 
-    private SimpleAdapter mAdapter;
+    private StaggeredAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +32,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         initViews();
 
-        mAdapter = new SimpleAdapter(this, mDatas);
+        mAdapter = new StaggeredAdapter(this, mDatas);
         mRecyclerView.setAdapter(mAdapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
 
     public void initDatas() {
@@ -82,14 +75,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL));
                 break;
             case R.id.action_staggered:
-                Intent intent = new Intent(this, StaggeredGridLayoutActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.action_add:
-                mAdapter.addData(1);
-                break;
-            case R.id.action_delete:
-                mAdapter.deleteData(1);
                 break;
             default:
                 break;

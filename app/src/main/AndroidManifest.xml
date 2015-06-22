@@ -90,6 +90,10 @@
             android:name=".activity.RecyclerViewActivity"
             android:label="@string/title_activity_recycler_view" >
         </activity>
+        <activity
+            android:name=".activity.StaggeredGridLayoutActivity"
+            android:label="@string/title_activity_recycler_view" >
+        </activity>
     </application>
 
 </manifest>

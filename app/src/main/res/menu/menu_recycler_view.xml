@@ -2,6 +2,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.leckie.demo.activity.RecyclerViewActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:title="add"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:orderInCategory="100"
+        android:title="delete"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/action_listview"
+        android:orderInCategory="100"
+        android:title="ListView"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_gridview"
+        android:orderInCategory="100"
+        android:title="GridView"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_hor_gridview"
+        android:orderInCategory="100"
+        android:title="HorizontalGridView"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_staggered"
+        android:orderInCategory="100"
+        android:title="StaggeredGridView"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
 </menu>
