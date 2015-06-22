@@ -19,4 +19,5 @@
     <string name="title_activity_moveable">MoveableActivity</string>
     <string name="title_activity_green_dao">GreenDaoActivity</string>
     <string name="title_activity_sliding_menu">SlidingMenuActivity</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
 </resources>
