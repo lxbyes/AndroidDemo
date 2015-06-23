@@ -90,7 +90,7 @@ public class AsyncActivity extends Activity {
         @Override
         protected void onPostExecute(List<NewsBean> newsBeans) {
             super.onPostExecute(newsBeans);
-            NewsAdapter adapter = new NewsAdapter(AsyncActivity.this, newsBeans);
+            NewsAdapter adapter = new NewsAdapter(AsyncActivity.this, newsBeans, mListView);
             mListView.setAdapter(adapter);
         }
     }

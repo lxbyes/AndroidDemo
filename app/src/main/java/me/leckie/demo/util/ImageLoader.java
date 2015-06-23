@@ -7,11 +7,16 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.LruCache;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
+import me.leckie.demo.adapter.NewsAdapter;
 
 /**
  * @author leckie
@@ -19,13 +24,20 @@ import java.net.URL;
  */
 public class ImageLoader {
 
+    private ListView mListView;
+
+    private Set<NewsImageAsyncTask> mTasks;
+
     private ImageView mImageView;
 
     private LruCache<String, Bitmap> mCache;
 
     private String mUrl;
 
-    public ImageLoader() {
+    public ImageLoader(ListView listView) {
+        mListView = listView;
+        mTasks = new HashSet<>();
+
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
         int cacheSize = maxMemory / 4;
         mCache = new LruCache<String, Bitmap>(cacheSize) {
@@ -116,6 +128,30 @@ public class ImageLoader {
         }
     }
 
+    public void loadImages(int start, int end) {
+        for (int i = start; i < end; i++) {
+            String url = NewsAdapter.URLS[i];
+
+            Bitmap bitmap = getBitmapFromCache(url);
+            if (bitmap == null) {
+                NewsImageAsyncTask task = new NewsImageAsyncTask(url);
+                task.execute(url);
+                mTasks.add(task);
+            } else {
+                ImageView imageView = (ImageView) mListView.findViewWithTag(url);
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+    }
+
+    public void cancelAllTasks() {
+        if (mTasks != null) {
+            for (NewsImageAsyncTask task : mTasks) {
+                task.cancel(false);
+            }
+        }
+    }
+
     class NewsImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
         private ImageView mImageView;
@@ -124,6 +160,10 @@ public class ImageLoader {
 
         public NewsImageAsyncTask(ImageView imageView, String url) {
             mImageView = imageView;
+            mUrl = url;
+        }
+
+        public NewsImageAsyncTask(String url) {
             mUrl = url;
         }
 
@@ -140,9 +180,15 @@ public class ImageLoader {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
-            if (mImageView.getTag().equals(mUrl)) {
+            if (mImageView == null) {
+                mImageView = (ImageView) mListView.findViewWithTag(mUrl);
+            }
+
+            if (mImageView != null && bitmap != null && mImageView.getTag().equals(mUrl)) {
                 mImageView.setImageBitmap(bitmap);
             }
+
+            mTasks.remove(this);
         }
     }
 }
