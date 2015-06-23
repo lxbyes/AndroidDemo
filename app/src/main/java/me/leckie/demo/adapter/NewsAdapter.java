@@ -20,6 +20,8 @@ import me.leckie.demo.util.ImageLoader;
  */
 public class NewsAdapter extends BaseAdapter {
 
+    private ImageLoader mImageLoader;
+
     private List<NewsBean> mList;
 
     private LayoutInflater mInflater;
@@ -27,6 +29,7 @@ public class NewsAdapter extends BaseAdapter {
     public NewsAdapter(Context context, List<NewsBean> data) {
         mList = data;
         mInflater = LayoutInflater.from(context);
+        mImageLoader = new ImageLoader();
     }
 
     @Override
@@ -61,8 +64,8 @@ public class NewsAdapter extends BaseAdapter {
         String url = mList.get(position).getNewsIconUrl();
         viewHolder.mIcon.setTag(url);
         // async load image
-        //new ImageLoader().showImageByThread(viewHolder.mIcon, url);
-        new ImageLoader().showImageByAsyncTask(viewHolder.mIcon, url);
+        //mImageLoader.showImageByThread(viewHolder.mIcon, url);
+        mImageLoader.showImageByAsyncTask(viewHolder.mIcon, url);
         viewHolder.mTitle.setText(mList.get(position).getNewsTitle());
         viewHolder.mContent.setText(mList.get(position).getNewsContent());
         return convertView;

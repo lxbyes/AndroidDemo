@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.util.LruCache;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -20,7 +21,43 @@ public class ImageLoader {
 
     private ImageView mImageView;
 
+    private LruCache<String, Bitmap> mCache;
+
     private String mUrl;
+
+    public ImageLoader() {
+        int maxMemory = (int) Runtime.getRuntime().maxMemory();
+        int cacheSize = maxMemory / 4;
+        mCache = new LruCache<String, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                // 每次缓存时调用
+                return value.getByteCount();
+            }
+        };
+    }
+
+    /**
+     * add bitmap to cache<p/>
+     *
+     * @param key
+     * @param value
+     */
+    public void addBitmap2Cache(String key, Bitmap value) {
+        if (getBitmapFromUrl(key) == null) {
+            mCache.put(key, value);
+        }
+    }
+
+    /**
+     * get bitmap from cache<p/>
+     *
+     * @param key
+     * @return
+     */
+    public Bitmap getBitmapFromCache(String key) {
+        return mCache.get(key);
+    }
 
     private Handler mHandler = new Handler() {
 
@@ -71,7 +108,12 @@ public class ImageLoader {
     }
 
     public void showImageByAsyncTask(ImageView imageView, String url) {
-        new NewsImageAsyncTask(imageView, url).execute(url);
+        Bitmap bitmap = getBitmapFromUrl(url);
+        if (bitmap == null) {
+            new NewsImageAsyncTask(imageView, url).execute(url);
+        } else {
+            imageView.setImageBitmap(bitmap);
+        }
     }
 
     class NewsImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
@@ -87,7 +129,12 @@ public class ImageLoader {
 
         @Override
         protected Bitmap doInBackground(String... params) {
-            return getBitmapFromUrl(params[0]);
+            String url = params[0];
+            Bitmap bitmap = getBitmapFromUrl(url);
+            if (bitmap != null) {
+                addBitmap2Cache(url, bitmap);
+            }
+            return bitmap;
         }
 
         @Override
