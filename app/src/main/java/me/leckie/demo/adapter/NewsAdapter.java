@@ -61,7 +61,8 @@ public class NewsAdapter extends BaseAdapter {
         String url = mList.get(position).getNewsIconUrl();
         viewHolder.mIcon.setTag(url);
         // async load image
-        new ImageLoader().showImageByThread(viewHolder.mIcon, url);
+        //new ImageLoader().showImageByThread(viewHolder.mIcon, url);
+        new ImageLoader().showImageByAsyncTask(viewHolder.mIcon, url);
         viewHolder.mTitle.setText(mList.get(position).getNewsTitle());
         viewHolder.mContent.setText(mList.get(position).getNewsContent());
         return convertView;

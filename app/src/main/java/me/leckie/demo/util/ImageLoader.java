@@ -2,6 +2,7 @@ package me.leckie.demo.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
@@ -50,9 +51,10 @@ public class ImageLoader {
     public Bitmap getBitmapFromUrl(String url) {
         Bitmap bitmap = null;
         InputStream is = null;
+        HttpURLConnection con = null;
         try {
             URL u = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) u.openConnection();
+            con = (HttpURLConnection) u.openConnection();
             is = new BufferedInputStream(con.getInputStream());
             bitmap = BitmapFactory.decodeStream(is);
             return bitmap;
@@ -61,9 +63,39 @@ public class ImageLoader {
         } finally {
             try {
                 is.close();
+                con.disconnect();
             } catch (Exception e) {
             }
         }
         return null;
+    }
+
+    public void showImageByAsyncTask(ImageView imageView, String url) {
+        new NewsImageAsyncTask(imageView, url).execute(url);
+    }
+
+    class NewsImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
+
+        private ImageView mImageView;
+
+        private String mUrl;
+
+        public NewsImageAsyncTask(ImageView imageView, String url) {
+            mImageView = imageView;
+            mUrl = url;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            return getBitmapFromUrl(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            if (mImageView.getTag().equals(mUrl)) {
+                mImageView.setImageBitmap(bitmap);
+            }
+        }
     }
 }
