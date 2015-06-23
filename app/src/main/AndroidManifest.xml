@@ -94,6 +94,10 @@
             android:name=".activity.StaggeredGridLayoutActivity"
             android:label="@string/title_activity_recycler_view" >
         </activity>
+        <activity
+            android:name=".activity.AsyncActivity"
+            android:label="@string/title_activity_async" >
+        </activity>
     </application>
 
 </manifest>

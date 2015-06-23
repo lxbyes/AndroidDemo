@@ -22,12 +22,12 @@ public class ListViewActivity extends Activity {
         String[] items = {"Back", "Lifecycle", "GridViewActivity",
                 "ListViewLoader", "Settings", "Fragment",
                 "DrawBall", "Movement", "SurfaceView", "Moveable",
-                "GreenDao", "SlidingMenu", "RecyclerView"};
+                "GreenDao", "SlidingMenu", "RecyclerView", "Async"};
         // Demo class
         final Class[] targets = {MainActivity.class, LifecycleActivity.class, GridViewActivity.class,
                 ListViewLoader.class, SettingsActivity.class, FragmentActivity.class,
                 DrawBallActivity.class, MovementActivity.class, SurfaceActivity.class,
-                MoveableActivity.class, GreenDaoActivity.class, SlidingMenuActivity.class, RecyclerViewActivity.class};
+                MoveableActivity.class, GreenDaoActivity.class, SlidingMenuActivity.class, RecyclerViewActivity.class, AsyncActivity.class};
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);
         listView = (ListView) findViewById(R.id.list_item);
