@@ -84,19 +84,46 @@
 
         <activity
             android:name=".activity.SlidingMenuActivity"
-            android:label="@string/title_activity_sliding_menu" >
-        </activity>
+            android:label="@string/title_activity_sliding_menu" />
         <activity
             android:name=".activity.RecyclerViewActivity"
-            android:label="@string/title_activity_recycler_view" >
-        </activity>
+            android:label="@string/title_activity_recycler_view" />
         <activity
             android:name=".activity.StaggeredGridLayoutActivity"
-            android:label="@string/title_activity_recycler_view" >
-        </activity>
+            android:label="@string/title_activity_recycler_view" />
         <activity
             android:name=".activity.AsyncActivity"
-            android:label="@string/title_activity_async" >
+            android:label="@string/title_activity_async" />
+        <activity
+            android:name=".activity.VideoWayActivity"
+            android:label="Video Player" />
+        <activity
+            android:name=".activity.VideoViewActivity"
+            android:label="@string/title_activity_video_view" >
+        </activity>
+        <activity
+            android:name=".activity.BlankActivityWithFragmentActivity"
+            android:label="@string/title_activity_blank_activity_with_fragment" >
+        </activity>
+        <activity
+            android:name=".activity.MainActivity2Activity"
+            android:label="@string/title_activity_main_activity2" >
+        </activity>
+        <activity
+            android:name=".activity.ItemListActivity"
+            android:label="@string/title_item_list" >
+        </activity>
+        <activity
+            android:name=".activity.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".activity.ItemListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.leckie.demo.activity.ItemListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.TabbedDemoActivity"
+            android:label="@string/title_activity_tabbed_demo" >
         </activity>
     </application>
 

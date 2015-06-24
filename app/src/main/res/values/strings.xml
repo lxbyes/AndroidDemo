@@ -21,4 +21,16 @@
     <string name="title_activity_sliding_menu">SlidingMenuActivity</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
     <string name="title_activity_async">AsyncActivity</string>
+    <string name="title_activity_video_way">VideoWayActivity</string>
+    <string name="title_activity_video_view">VideoViewActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_blank_activity_with_fragment">BlankActivityWithFragmentActivity
+    </string>
+    <string name="title_activity_main_activity2">MainActivity2Activity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_tabbed_demo">TabbedDemoActivity</string>
 </resources>
