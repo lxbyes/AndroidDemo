@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.leckie.demo.activity.ImagePagerActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:id="@+id/pager_extend"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/pager_image"
+        android:background="#66000000"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+</RelativeLayout>

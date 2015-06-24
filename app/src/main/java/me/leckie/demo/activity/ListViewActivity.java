@@ -19,13 +19,14 @@ public class ListViewActivity extends Activity {
 
     private void init() {
         // items
-        String[] items = {"Back", "Video Player", "TabbedActivity",
+        String[] items = {"Back", "Video Player", "TabbedActivity", "ImagePager",
                 "ViewPager", "Lifecycle", "GridViewActivity",
                 "ListViewLoader", "Settings", "Fragment",
                 "DrawBall", "Movement", "SurfaceView", "Moveable",
                 "GreenDao", "SlidingMenu", "RecyclerView", "Async"};
         // Demo class
         final Class[] targets = {MainActivity.class, VideoWayActivity.class, TabbedDemoActivity.class,
+                ImagePagerActivity.class,
                 ViewpPagerDemoActivity.class, LifecycleActivity.class, GridViewActivity.class,
                 ListViewLoader.class, SettingsActivity.class, FragmentActivity.class,
                 DrawBallActivity.class, MovementActivity.class, SurfaceActivity.class,

@@ -129,6 +129,10 @@
             android:name=".activity.ViewpPagerDemoActivity"
             android:label="@string/title_activity_viewp_pager_demo" >
         </activity>
+        <activity
+            android:name=".activity.ImagePagerActivity"
+            android:label="@string/title_activity_image_pager" >
+        </activity>
     </application>
 
 </manifest>
