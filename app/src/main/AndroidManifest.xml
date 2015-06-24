@@ -125,6 +125,10 @@
             android:name=".activity.TabbedDemoActivity"
             android:label="@string/title_activity_tabbed_demo" >
         </activity>
+        <activity
+            android:name=".activity.ViewpPagerDemoActivity"
+            android:label="@string/title_activity_viewp_pager_demo" >
+        </activity>
     </application>
 
 </manifest>
