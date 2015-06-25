@@ -50,7 +50,7 @@ public class StaggeredGridLayoutActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
 
