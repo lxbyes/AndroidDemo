@@ -27,7 +27,8 @@ public class StaggeredAdapter extends SimpleAdapter {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int pos) {
         ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-        lp.height = mHeights.get(pos);
+        //lp.height = mHeights.get(pos);
+        lp.width = mHeights.get(pos);
 
         holder.itemView.setLayoutParams(lp);
         holder.tv.setText(mDatas.get(pos));

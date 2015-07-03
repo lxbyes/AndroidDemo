@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -52,12 +53,20 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
+        //RecyclerView.LayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        /*RecyclerView.LayoutManager layoutManager = new RecyclerView.LayoutManager() {
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+        };*/
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        //mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     public void initDatas() {
